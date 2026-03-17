@@ -1,6 +1,6 @@
 "use client";
 import { useState, useCallback } from "react";
-import { Copy, Check, Save, Wand2, RefreshCw } from "lucide-react";
+import { Copy, Check, Save, Wand2, RefreshCw, Sparkles } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { Template, TemplateField } from "@/lib/db";
 import { cn } from "@/lib/utils";
@@ -23,32 +23,22 @@ export default function PromptGenerator({ template, onSave }: PromptGeneratorPro
   const [copied, setCopied] = useState(false);
   const [saving, setSaving] = useState(false);
 
+  const isImage = template.type === "image";
+
   const buildPrompt = useCallback(() => {
     const parts: string[] = [];
-
     template.fields.forEach((field) => {
       const value = values[field.key];
       if (!value || (Array.isArray(value) && value.length === 0)) return;
-      if (Array.isArray(value)) {
-        parts.push(value.join(", "));
-      } else {
-        parts.push(value);
-      }
+      if (Array.isArray(value)) parts.push(value.join(", "));
+      else parts.push(value);
     });
-
-    if (template.type === "image") {
-      parts.push("highly detailed", "masterpiece quality", "8k resolution");
-    } else {
-      parts.push("high fidelity", "professional quality", "studio production");
-    }
-
+    if (isImage) parts.push("highly detailed", "masterpiece quality", "8k resolution");
+    else parts.push("high fidelity", "professional quality", "studio production");
     return parts.filter(Boolean).join(", ");
-  }, [values, template]);
+  }, [values, template, isImage]);
 
-  const handleGenerate = () => {
-    const p = buildPrompt();
-    setGenerated(p);
-  };
+  const handleGenerate = () => setGenerated(buildPrompt());
 
   const handleReset = () => {
     const init: Record<string, string | string[]> = {};
@@ -70,22 +60,18 @@ export default function PromptGenerator({ template, onSave }: PromptGeneratorPro
   const handleSave = async () => {
     if (!generated || !onSave) return;
     setSaving(true);
-    try {
-      onSave(generated);
-    } finally {
-      setSaving(false);
-    }
+    try { onSave(generated); } finally { setSaving(false); }
   };
 
   const handleMultiSelect = (key: string, option: string) => {
     setValues((prev) => {
       const current = (prev[key] as string[]) || [];
-      const next = current.includes(option)
-        ? current.filter((v) => v !== option)
-        : [...current, option];
+      const next = current.includes(option) ? current.filter((v) => v !== option) : [...current, option];
       return { ...prev, [key]: next };
     });
   };
+
+  const accent = isImage ? "cyan" : "pink";
 
   return (
     <div className="space-y-5">
@@ -96,6 +82,7 @@ export default function PromptGenerator({ template, onSave }: PromptGeneratorPro
             key={field.id}
             field={field}
             value={values[field.key]}
+            accent={accent}
             onChange={(v) => setValues((prev) => ({ ...prev, [field.key]: v }))}
             onMultiToggle={(opt) => handleMultiSelect(field.key, opt)}
           />
@@ -103,13 +90,18 @@ export default function PromptGenerator({ template, onSave }: PromptGeneratorPro
       </div>
 
       {/* Actions */}
-      <div className="flex gap-3 flex-wrap">
-        <Button onClick={handleGenerate} size="lg" className="flex-1 sm:flex-none">
-          <Wand2 size={16} />
+      <div className="flex gap-3 flex-wrap pt-1">
+        <Button
+          onClick={handleGenerate}
+          size="lg"
+          variant={isImage ? "primary" : "pink"}
+          className="flex-1 sm:flex-none"
+        >
+          <Sparkles size={15} />
           Generate Prompt
         </Button>
         <Button variant="secondary" onClick={handleReset} size="lg">
-          <RefreshCw size={14} />
+          <RefreshCw size={13} />
           Reset
         </Button>
       </div>
@@ -118,33 +110,36 @@ export default function PromptGenerator({ template, onSave }: PromptGeneratorPro
       {generated && (
         <div className="space-y-3 animate-slide-up">
           <div className="flex items-center justify-between">
-            <h4 className="text-sm font-medium text-gray-300">Generated Prompt</h4>
+            <span className={`text-xs font-mono tracking-widest uppercase ${isImage ? "text-cyan-500" : "text-pink-500"}`}>
+              // Generated Prompt
+            </span>
             <div className="flex gap-2">
-              <Button variant="ghost" size="sm" onClick={handleCopy}>
-                {copied ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
+              <Button variant="ghost" size="sm" onClick={handleCopy} className={copied ? "text-emerald-400" : ""}>
+                {copied ? <Check size={13} /> : <Copy size={13} />}
                 {copied ? "Copied!" : "Copy"}
               </Button>
               {onSave && (
                 <Button variant="outline" size="sm" onClick={handleSave} loading={saving}>
-                  <Save size={14} />
+                  <Save size={13} />
                   Save
                 </Button>
               )}
             </div>
           </div>
-          <div className="prompt-output select-all cursor-text">{generated}</div>
-          <p className="text-xs text-gray-600">
-            Click prompt to select all • Use in Midjourney, DALL-E, Stable Diffusion
-            {template.type === "music" && " • Or in Suno, Udio, Stable Audio"}
+          <div className="prompt-output select-all cursor-text" onClick={handleCopy}>
+            {generated}
+          </div>
+          <p className="text-[10px] text-slate-700 font-mono">
+            Click to copy • Use in {isImage ? "Midjourney / DALL-E / Stable Diffusion" : "Suno / Udio / Stable Audio"}
           </p>
         </div>
       )}
 
-      {/* Example */}
+      {/* Example output (when nothing generated yet) */}
       {!generated && template.exampleOutput && (
         <div className="space-y-2">
-          <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Example Output</p>
-          <div className="prompt-output opacity-50 text-xs">{template.exampleOutput}</div>
+          <p className="text-[10px] text-slate-700 font-mono tracking-widest uppercase">// Example Output</p>
+          <div className="prompt-output opacity-40 text-xs pointer-events-none">{template.exampleOutput}</div>
         </div>
       )}
     </div>
@@ -152,53 +147,54 @@ export default function PromptGenerator({ template, onSave }: PromptGeneratorPro
 }
 
 function FieldRenderer({
-  field,
-  value,
-  onChange,
-  onMultiToggle,
+  field, value, onChange, onMultiToggle, accent,
 }: {
   field: TemplateField;
   value: string | string[];
+  accent: "cyan" | "pink";
   onChange: (v: string | string[]) => void;
   onMultiToggle: (opt: string) => void;
 }) {
+  const focusClass = accent === "cyan"
+    ? "focus:border-[#00d4ff50] focus:shadow-[0_0_12px_rgba(0,212,255,0.1)]"
+    : "focus:border-[#f472b650] focus:shadow-[0_0_12px_rgba(244,114,182,0.1)]";
+
+  const baseInput = cn(
+    "w-full bg-black/50 border border-[#ffffff0d] text-slate-200 placeholder-slate-700 rounded-lg px-3 py-2 text-sm transition-all duration-200 focus:outline-none",
+    focusClass
+  );
+
   return (
     <div className="space-y-1.5">
-      <label className="text-sm font-medium text-gray-300">
+      <label className="block text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
         {field.label}
-        {field.required && <span className="text-red-400 ml-1">*</span>}
+        {field.required && <span className={`ml-1 ${accent === "cyan" ? "text-cyan-600" : "text-pink-600"}`}>*</span>}
       </label>
-      {field.description && <p className="text-xs text-gray-500">{field.description}</p>}
+      {field.description && <p className="text-[11px] text-slate-700">{field.description}</p>}
 
       {field.type === "select" && (
-        <select
-          value={value as string}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-gray-800/60 border border-gray-700 text-gray-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
-        >
-          <option value="">— Select —</option>
+        <select value={value as string} onChange={(e) => onChange(e.target.value)}
+          className={cn(baseInput, "appearance-none cursor-pointer")}>
+          <option value="" className="bg-[#0a0a14]">— Select —</option>
           {field.options?.map((opt) => (
-            <option key={opt} value={opt} className="bg-gray-800">
-              {opt}
-            </option>
+            <option key={opt} value={opt} className="bg-[#0a0a14]">{opt}</option>
           ))}
         </select>
       )}
 
       {field.type === "multiselect" && (
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {field.options?.map((opt) => {
             const selected = (value as string[]).includes(opt);
             return (
-              <button
-                key={opt}
-                type="button"
-                onClick={() => onMultiToggle(opt)}
+              <button key={opt} type="button" onClick={() => onMultiToggle(opt)}
                 className={cn(
-                  "px-3 py-1.5 rounded-lg text-xs font-medium transition-all border",
+                  "px-2.5 py-1 rounded-md text-xs font-medium transition-all border",
                   selected
-                    ? "bg-violet-600/30 border-violet-500 text-violet-200"
-                    : "bg-gray-800 border-gray-700 text-gray-400 hover:border-gray-500 hover:text-gray-300"
+                    ? accent === "cyan"
+                      ? "bg-cyan-500/15 border-cyan-500/50 text-cyan-300 shadow-[0_0_8px_rgba(0,212,255,0.1)]"
+                      : "bg-pink-500/15 border-pink-500/50 text-pink-300 shadow-[0_0_8px_rgba(244,114,182,0.1)]"
+                    : "bg-black/40 border-[#ffffff0a] text-slate-500 hover:border-[#ffffff20] hover:text-slate-300"
                 )}
               >
                 {opt}
@@ -209,33 +205,18 @@ function FieldRenderer({
       )}
 
       {field.type === "text" && (
-        <input
-          type="text"
-          value={value as string}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={field.placeholder}
-          className="w-full bg-gray-800/60 border border-gray-700 text-gray-100 placeholder-gray-500 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
-        />
+        <input type="text" value={value as string} onChange={(e) => onChange(e.target.value)}
+          placeholder={field.placeholder} className={baseInput} />
       )}
 
       {field.type === "textarea" && (
-        <textarea
-          value={value as string}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={field.placeholder}
-          rows={3}
-          className="w-full bg-gray-800/60 border border-gray-700 text-gray-100 placeholder-gray-500 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent resize-none"
-        />
+        <textarea value={value as string} onChange={(e) => onChange(e.target.value)}
+          placeholder={field.placeholder} rows={3} className={cn(baseInput, "resize-none")} />
       )}
 
       {field.type === "number" && (
-        <input
-          type="number"
-          value={value as string}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={field.placeholder}
-          className="w-full bg-gray-800/60 border border-gray-700 text-gray-100 placeholder-gray-500 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
-        />
+        <input type="number" value={value as string} onChange={(e) => onChange(e.target.value)}
+          placeholder={field.placeholder} className={baseInput} />
       )}
     </div>
   );

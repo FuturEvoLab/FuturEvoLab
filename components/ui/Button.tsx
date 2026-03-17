@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "ghost" | "danger" | "outline";
+  variant?: "primary" | "secondary" | "ghost" | "danger" | "outline" | "pink";
   size?: "sm" | "md" | "lg";
   loading?: boolean;
 }
@@ -11,24 +11,27 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", loading, children, disabled, ...props }, ref) => {
     const base =
-      "inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed";
+      "inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-black disabled:opacity-40 disabled:cursor-not-allowed tracking-wide";
 
     const variants = {
       primary:
-        "bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white focus:ring-violet-500 shadow-lg shadow-violet-500/20",
+        "bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black focus:ring-cyan-500 shadow-[0_0_20px_rgba(0,212,255,0.3)] hover:shadow-[0_0_30px_rgba(0,212,255,0.5)] hover:-translate-y-px active:translate-y-0",
+      pink:
+        "bg-gradient-to-r from-pink-500 to-fuchsia-600 hover:from-pink-400 hover:to-fuchsia-500 text-white focus:ring-pink-500 shadow-[0_0_20px_rgba(244,114,182,0.3)] hover:shadow-[0_0_30px_rgba(244,114,182,0.5)] hover:-translate-y-px active:translate-y-0",
       secondary:
-        "bg-gray-800 hover:bg-gray-700 text-gray-100 border border-gray-700 focus:ring-gray-500",
-      ghost: "text-gray-300 hover:text-white hover:bg-gray-800 focus:ring-gray-500",
+        "bg-[#0a0a14] hover:bg-[#111128] text-slate-200 border border-[#00d4ff22] hover:border-[#00d4ff44] focus:ring-cyan-700 hover:-translate-y-px",
+      ghost:
+        "text-slate-400 hover:text-cyan-300 hover:bg-[#00d4ff08] focus:ring-cyan-800 rounded-lg",
       danger:
-        "bg-red-600 hover:bg-red-500 text-white focus:ring-red-500 shadow-lg shadow-red-500/20",
+        "bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white focus:ring-red-500 shadow-[0_0_15px_rgba(239,68,68,0.25)] hover:shadow-[0_0_25px_rgba(239,68,68,0.4)]",
       outline:
-        "border border-violet-500 text-violet-400 hover:bg-violet-500/10 focus:ring-violet-500",
+        "border border-[#00d4ff44] text-cyan-400 hover:bg-[#00d4ff0d] hover:border-[#00d4ff88] focus:ring-cyan-600",
     };
 
     const sizes = {
-      sm: "text-sm px-3 py-1.5",
+      sm: "text-xs px-3 py-1.5",
       md: "text-sm px-4 py-2",
-      lg: "text-base px-6 py-3",
+      lg: "text-sm px-6 py-2.5",
     };
 
     return (
@@ -39,13 +42,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading && (
-          <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+          <svg className="animate-spin h-3.5 w-3.5" viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25" />
-            <path
-              fill="currentColor"
-              className="opacity-75"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-            />
+            <path fill="currentColor" className="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
           </svg>
         )}
         {children}

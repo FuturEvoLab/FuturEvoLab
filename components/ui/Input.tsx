@@ -10,24 +10,27 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, label, error, hint, ...props }, ref) => {
     return (
-      <div className="space-y-1">
+      <div className="space-y-1.5">
         {label && (
-          <label className="block text-sm font-medium text-gray-300">
+          <label className="block text-xs font-semibold text-slate-400 uppercase tracking-widest">
             {label}
-            {props.required && <span className="text-red-400 ml-1">*</span>}
+            {props.required && <span className="text-pink-400 ml-1">*</span>}
           </label>
         )}
         <input
           ref={ref}
           className={cn(
-            "w-full bg-gray-800/60 border border-gray-700 text-gray-100 placeholder-gray-500 rounded-lg px-3 py-2 text-sm",
-            "focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all",
-            error && "border-red-500 focus:ring-red-500",
+            "w-full bg-black/60 border text-slate-200 placeholder-slate-600 rounded-lg px-3 py-2 text-sm",
+            "transition-all duration-200",
+            "focus:outline-none focus:ring-0",
+            error
+              ? "border-red-500/50 focus:border-red-400 focus:shadow-[0_0_12px_rgba(239,68,68,0.15)]"
+              : "border-[#00d4ff1a] focus:border-[#00d4ff55] focus:shadow-[0_0_12px_rgba(0,212,255,0.12)]",
             className
           )}
           {...props}
         />
-        {hint && !error && <p className="text-xs text-gray-500">{hint}</p>}
+        {hint && !error && <p className="text-xs text-slate-600">{hint}</p>}
         {error && <p className="text-xs text-red-400">{error}</p>}
       </div>
     );

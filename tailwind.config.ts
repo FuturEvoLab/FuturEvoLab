@@ -10,28 +10,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: "#f0eeff",
-          100: "#e3deff",
-          200: "#c9bcff",
-          300: "#a98aff",
-          400: "#8b5cf6",
-          500: "#7c3aed",
-          600: "#6d28d9",
-          700: "#5b21b6",
-          800: "#4c1d95",
-          900: "#2e1065",
+        cyber: {
+          blue: "#00d4ff",
+          "blue-dim": "#0ea5e9",
+          pink: "#f472b6",
+          "pink-bright": "#e879f9",
+          "pink-hot": "#ec4899",
+          dark: "#03030a",
+          card: "#0a0a14",
+          border: "#1a1a2e",
         },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "hero-gradient":
-          "linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)",
+        "cyber-gradient": "linear-gradient(135deg, #00d4ff 0%, #a855f7 50%, #f472b6 100%)",
+        "blue-gradient": "linear-gradient(135deg, #00d4ff 0%, #0ea5e9 100%)",
+        "pink-gradient": "linear-gradient(135deg, #f472b6 0%, #e879f9 100%)",
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",
         "slide-up": "slideUp 0.4s ease-out",
-        "pulse-glow": "pulseGlow 2s ease-in-out infinite",
+        "pulse-glow-blue": "pulseGlowBlue 2.5s ease-in-out infinite",
+        "pulse-glow-pink": "pulseGlowPink 2.5s ease-in-out infinite",
+        "scan": "scan 8s linear infinite",
+        "flicker": "flicker 4s ease-in-out infinite",
+        "border-flow": "borderFlow 3s linear infinite",
       },
       keyframes: {
         fadeIn: {
@@ -39,13 +42,44 @@ const config: Config = {
           "100%": { opacity: "1" },
         },
         slideUp: {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        pulseGlow: {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(139, 92, 246, 0.3)" },
-          "50%": { boxShadow: "0 0 40px rgba(139, 92, 246, 0.6)" },
+        pulseGlowBlue: {
+          "0%, 100%": { boxShadow: "0 0 15px rgba(0, 212, 255, 0.2), inset 0 0 15px rgba(0, 212, 255, 0.05)" },
+          "50%": { boxShadow: "0 0 35px rgba(0, 212, 255, 0.4), inset 0 0 20px rgba(0, 212, 255, 0.1)" },
         },
+        pulseGlowPink: {
+          "0%, 100%": { boxShadow: "0 0 15px rgba(244, 114, 182, 0.2)" },
+          "50%": { boxShadow: "0 0 35px rgba(244, 114, 182, 0.5)" },
+        },
+        scan: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(100vh)" },
+        },
+        flicker: {
+          "0%, 95%, 100%": { opacity: "1" },
+          "96%": { opacity: "0.8" },
+          "97%": { opacity: "1" },
+          "98%": { opacity: "0.6" },
+          "99%": { opacity: "1" },
+        },
+        borderFlow: {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
+      },
+      fontFamily: {
+        mono: ["'Courier New'", "Courier", "monospace"],
+      },
+      boxShadow: {
+        "neon-blue": "0 0 20px rgba(0, 212, 255, 0.4), 0 0 60px rgba(0, 212, 255, 0.1)",
+        "neon-pink": "0 0 20px rgba(244, 114, 182, 0.4), 0 0 60px rgba(244, 114, 182, 0.1)",
+        "neon-blue-sm": "0 0 10px rgba(0, 212, 255, 0.3)",
+        "neon-pink-sm": "0 0 10px rgba(244, 114, 182, 0.3)",
+        "inner-blue": "inset 0 0 20px rgba(0, 212, 255, 0.05)",
+        "inner-pink": "inset 0 0 20px rgba(244, 114, 182, 0.05)",
       },
     },
   },

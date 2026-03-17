@@ -4,7 +4,7 @@ import { SiteSettings } from "@/lib/db";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
-import { Save, AlertTriangle, CheckCircle } from "lucide-react";
+import { Save, CheckCircle, AlertTriangle, Terminal } from "lucide-react";
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState<SiteSettings | null>(null);
@@ -13,20 +13,13 @@ export default function SettingsPage() {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    fetch("/api/admin/settings").then(r => r.json()).then(data => {
-      setSettings(data);
-      setLoading(false);
-    });
+    fetch("/api/admin/settings").then(r => r.json()).then(data => { setSettings(data); setLoading(false); });
   }, []);
 
   const handleSave = async () => {
     if (!settings) return;
     setSaving(true);
-    await fetch("/api/admin/settings", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(settings),
-    });
+    await fetch("/api/admin/settings", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(settings) });
     setSaving(false);
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
@@ -34,118 +27,106 @@ export default function SettingsPage() {
 
   if (loading || !settings) {
     return (
-      <div className="pt-10 lg:pt-0 space-y-4">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <div key={i} className="h-16 rounded-xl shimmer" />
-        ))}
+      <div className="pt-14 lg:pt-0 space-y-4">
+        {Array.from({ length: 4 }).map((_, i) => <div key={i} className="h-16 rounded-xl shimmer" />)}
       </div>
     );
   }
 
+  const toggleClass = (enabled: boolean) =>
+    `relative w-10 h-5 rounded-full transition-all cursor-pointer ${enabled ? "bg-gradient-to-r from-cyan-500 to-blue-600 shadow-[0_0_10px_rgba(0,212,255,0.3)]" : "bg-[#ffffff0d] border border-[#ffffff12]"}`;
+
   return (
-    <div className="space-y-6 pt-10 lg:pt-0">
+    <div className="space-y-5 pt-14 lg:pt-0">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Site Settings</h1>
-          <p className="text-sm text-gray-500 mt-1">Configure your prompt studio</p>
+          <p className="text-[10px] font-mono text-slate-600 uppercase tracking-widest mb-1">// Configuration</p>
+          <h1 className="text-2xl font-black text-white tracking-tight">Site Settings</h1>
         </div>
-        <Button onClick={handleSave} loading={saving}>
-          {saved ? <CheckCircle size={16} className="text-green-400" /> : <Save size={16} />}
+        <Button onClick={handleSave} loading={saving} size="sm">
+          {saved ? <CheckCircle size={13} className="text-emerald-400" /> : <Save size={13} />}
           {saved ? "Saved!" : "Save Changes"}
         </Button>
       </div>
 
+      <div className="h-px bg-gradient-to-r from-transparent via-[#00d4ff15] to-transparent" />
+
       {saved && (
-        <div className="flex items-center gap-2 px-4 py-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-sm text-emerald-300">
-          <CheckCircle size={16} />
-          Settings saved successfully!
+        <div className="flex items-center gap-2 px-4 py-2.5 bg-emerald-500/8 border border-emerald-500/25 rounded-xl text-xs text-emerald-400 font-mono">
+          <CheckCircle size={13} /> SETTINGS SAVED SUCCESSFULLY
         </div>
       )}
 
-      <div className="grid gap-6">
+      <div className="grid gap-4">
         {/* General */}
-        <div className="bg-gray-900/80 border border-gray-800 rounded-xl p-6 space-y-4">
-          <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wider">General</h2>
-          <div className="grid gap-4">
-            <Input
-              label="Site Name"
-              value={settings.siteName}
-              onChange={(e) => setSettings((s) => s ? { ...s, siteName: e.target.value } : s)}
-            />
-            <Textarea
-              label="Site Description"
-              value={settings.siteDescription}
-              onChange={(e) => setSettings((s) => s ? { ...s, siteDescription: e.target.value } : s)}
-              rows={2}
-            />
-            <Input
-              label="Admin Email"
-              type="email"
-              value={settings.adminEmail}
-              onChange={(e) => setSettings((s) => s ? { ...s, adminEmail: e.target.value } : s)}
-            />
+        <div className="bg-[#050508] border border-[#00d4ff0d] rounded-xl p-5 space-y-4">
+          <div className="flex items-center gap-2 mb-1">
+            <Terminal size={12} className="text-cyan-600" />
+            <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">General Configuration</span>
           </div>
+          <Input label="Site Name" value={settings.siteName} onChange={(e) => setSettings(s => s ? { ...s, siteName: e.target.value } : s)} />
+          <Textarea label="Site Description" value={settings.siteDescription} onChange={(e) => setSettings(s => s ? { ...s, siteDescription: e.target.value } : s)} rows={2} />
+          <Input label="Admin Email" type="email" value={settings.adminEmail} onChange={(e) => setSettings(s => s ? { ...s, adminEmail: e.target.value } : s)} />
         </div>
 
         {/* Behavior */}
-        <div className="bg-gray-900/80 border border-gray-800 rounded-xl p-6 space-y-4">
-          <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wider">Behavior</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Input
-              label="Max Prompts Per Session"
-              type="number"
-              value={settings.maxPromptsPerSession}
-              onChange={(e) => setSettings((s) => s ? { ...s, maxPromptsPerSession: parseInt(e.target.value) } : s)}
-            />
-            <Input
-              label="Featured Templates Count"
-              type="number"
-              value={settings.featuredTemplatesCount}
-              onChange={(e) => setSettings((s) => s ? { ...s, featuredTemplatesCount: parseInt(e.target.value) } : s)}
-            />
+        <div className="bg-[#050508] border border-[#00d4ff0d] rounded-xl p-5 space-y-4">
+          <div className="flex items-center gap-2 mb-1">
+            <Terminal size={12} className="text-cyan-600" />
+            <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Behavior</span>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <Input label="Max Prompts Per Session" type="number" value={settings.maxPromptsPerSession} onChange={(e) => setSettings(s => s ? { ...s, maxPromptsPerSession: parseInt(e.target.value) } : s)} />
+            <Input label="Featured Templates Count" type="number" value={settings.featuredTemplatesCount} onChange={(e) => setSettings(s => s ? { ...s, featuredTemplatesCount: parseInt(e.target.value) } : s)} />
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 pt-1">
             {[
               { key: "allowPublicSave", label: "Allow Public Prompt Saving", desc: "Let visitors save prompts without login" },
               { key: "analyticsEnabled", label: "Enable Analytics", desc: "Track usage counts and statistics" },
-              { key: "maintenanceMode", label: "Maintenance Mode", desc: "Show maintenance page to public visitors", danger: true },
-            ].map(({ key, label, desc, danger }) => (
-              <label key={key} className="flex items-start gap-3 cursor-pointer group">
-                <input
-                  type="checkbox"
-                  checked={settings[key as keyof SiteSettings] as boolean}
-                  onChange={(e) => setSettings((s) => s ? { ...s, [key]: e.target.checked } : s)}
-                  className="mt-0.5 w-4 h-4 rounded accent-violet-600 cursor-pointer"
-                />
+            ].map(({ key, label, desc }) => (
+              <label key={key} className="flex items-center justify-between gap-4 cursor-pointer group">
                 <div>
-                  <p className={`text-sm font-medium ${danger ? "text-red-300" : "text-gray-200"}`}>{label}</p>
-                  <p className="text-xs text-gray-500">{desc}</p>
+                  <p className="text-sm text-slate-300 group-hover:text-white transition-colors">{label}</p>
+                  <p className="text-[10px] text-slate-600 font-mono">{desc}</p>
+                </div>
+                <div
+                  className={toggleClass(settings[key as keyof SiteSettings] as boolean)}
+                  onClick={() => setSettings(s => s ? { ...s, [key]: !s[key as keyof SiteSettings] } : s)}
+                >
+                  <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all ${(settings[key as keyof SiteSettings] as boolean) ? "left-5" : "left-0.5"}`} />
                 </div>
               </label>
             ))}
+
+            {/* Maintenance mode — dangerous */}
+            <label className="flex items-center justify-between gap-4 cursor-pointer group px-3 py-2 rounded-lg bg-red-500/5 border border-red-500/15">
+              <div>
+                <p className="text-sm text-red-300">Maintenance Mode</p>
+                <p className="text-[10px] text-slate-600 font-mono">Show maintenance page to public visitors</p>
+              </div>
+              <div
+                className={`relative w-10 h-5 rounded-full transition-all cursor-pointer ${settings.maintenanceMode ? "bg-gradient-to-r from-red-600 to-red-500 shadow-[0_0_10px_rgba(239,68,68,0.3)]" : "bg-[#ffffff0d] border border-[#ffffff12]"}`}
+                onClick={() => setSettings(s => s ? { ...s, maintenanceMode: !s.maintenanceMode } : s)}
+              >
+                <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all ${settings.maintenanceMode ? "left-5" : "left-0.5"}`} />
+              </div>
+            </label>
           </div>
         </div>
 
-        {/* Danger zone */}
-        <div className="bg-red-950/20 border border-red-900/50 rounded-xl p-6">
+        {/* Danger Zone */}
+        <div className="bg-red-950/15 border border-red-900/30 rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
-            <AlertTriangle size={16} className="text-red-400" />
-            <h2 className="text-sm font-semibold text-red-300">Danger Zone</h2>
+            <AlertTriangle size={13} className="text-red-500" />
+            <span className="text-[10px] font-mono text-red-700 uppercase tracking-widest">Danger Zone</span>
           </div>
-          <p className="text-xs text-red-400/70 mb-4">
-            These actions are irreversible. Proceed with caution.
-          </p>
-          <Button
-            variant="danger"
-            size="sm"
-            onClick={() => {
-              if (confirm("Are you sure you want to delete ALL saved prompts? This cannot be undone.")) {
-                // Would need a dedicated endpoint; skip for now
-                alert("This feature requires a dedicated API endpoint. Implement as needed.");
-              }
-            }}
-          >
+          <p className="text-xs text-red-900 font-mono mb-4">Irreversible actions. Proceed with extreme caution.</p>
+          <Button variant="danger" size="sm" onClick={() => {
+            if (confirm("DELETE ALL saved prompts? This cannot be undone.")) {
+              alert("Implement a dedicated API endpoint to clear all prompts.");
+            }
+          }}>
             Clear All Saved Prompts
           </Button>
         </div>
