@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { readDB, writeDB, genId, now } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
 
 export async function GET(req: NextRequest) {
   const db = readDB();
@@ -43,5 +44,10 @@ export async function POST(req: NextRequest) {
 
   db.templates.push(template);
   writeDB(db);
+
+  revalidatePath("/");
+  revalidatePath("/image");
+  revalidatePath("/music");
+
   return NextResponse.json(template, { status: 201 });
 }

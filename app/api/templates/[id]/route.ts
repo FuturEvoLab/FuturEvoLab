@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { readDB, writeDB, now } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -23,6 +24,11 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 
   db.templates[idx] = { ...db.templates[idx], ...body, updatedAt: now() };
   writeDB(db);
+
+  revalidatePath("/");
+  revalidatePath("/image");
+  revalidatePath("/music");
+
   return NextResponse.json(db.templates[idx]);
 }
 
@@ -34,5 +40,10 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
   const db = readDB();
   db.templates = db.templates.filter((t) => t.id !== id);
   writeDB(db);
+
+  revalidatePath("/");
+  revalidatePath("/image");
+  revalidatePath("/music");
+
   return NextResponse.json({ success: true });
 }

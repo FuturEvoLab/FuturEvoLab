@@ -6,6 +6,7 @@ import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
+import { useToast } from "@/components/ui/Toast";
 import { Plus, Edit, Trash2, Crown, Shield, User } from "lucide-react";
 
 interface AdminUser {
@@ -14,6 +15,7 @@ interface AdminUser {
 }
 
 export default function UsersPage() {
+  const { toast, success, error: toastError } = useToast();
   const [users, setUsers] = useState<AdminUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
@@ -51,13 +53,16 @@ export default function UsersPage() {
     });
     const data = await res.json();
     if (!res.ok) { setError(data.error || "Failed"); setSaving(false); return; }
-    setSaving(false); setModalOpen(false); fetchData();
+    setSaving(false); setModalOpen(false);
+    success(editTarget ? "User updated" : "User created");
+    fetchData();
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete this admin user?")) return;
+    toast("info", "Deleting user…");
     const res = await fetch(`/api/admin/users/${id}`, { method: "DELETE" });
-    if (!res.ok) { const d = await res.json(); alert(d.error); return; }
+    if (!res.ok) { const d = await res.json(); toastError(d.error || "Delete failed"); return; }
+    success("User deleted");
     fetchData();
   };
 

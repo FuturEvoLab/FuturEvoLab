@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { readDB, writeDB, genId, now } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
 
 export async function GET(req: NextRequest) {
   const db = readDB();
@@ -26,7 +27,7 @@ export async function POST(req: NextRequest) {
     description: body.description || "",
     type: body.type,
     icon: body.icon || "📁",
-    color: body.color || "#7c3aed",
+    color: body.color || "#00d4ff",
     sortOrder: db.categories.length + 1,
     createdAt: now(),
     updatedAt: now(),
@@ -34,5 +35,10 @@ export async function POST(req: NextRequest) {
 
   db.categories.push(category);
   writeDB(db);
+
+  revalidatePath("/");
+  revalidatePath("/image");
+  revalidatePath("/music");
+
   return NextResponse.json(category, { status: 201 });
 }

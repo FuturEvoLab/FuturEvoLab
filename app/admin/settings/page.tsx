@@ -4,13 +4,16 @@ import { SiteSettings } from "@/lib/db";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
+import { useToast } from "@/components/ui/Toast";
 import { Save, CheckCircle, AlertTriangle, Terminal } from "lucide-react";
 
 export default function SettingsPage() {
+  const { success, error: toastError } = useToast();
   const [settings, setSettings] = useState<SiteSettings | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [clearing, setClearing] = useState(false);
 
   useEffect(() => {
     fetch("/api/admin/settings").then(r => r.json()).then(data => { setSettings(data); setLoading(false); });
@@ -22,7 +25,19 @@ export default function SettingsPage() {
     await fetch("/api/admin/settings", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(settings) });
     setSaving(false);
     setSaved(true);
+    success("Settings saved successfully");
     setTimeout(() => setSaved(false), 3000);
+  };
+
+  const handleClearPrompts = async () => {
+    setClearing(true);
+    const res = await fetch("/api/prompts/clear", { method: "DELETE" });
+    setClearing(false);
+    if (res.ok) {
+      success("All saved prompts cleared");
+    } else {
+      toastError("Failed to clear prompts");
+    }
   };
 
   if (loading || !settings) {
@@ -122,11 +137,7 @@ export default function SettingsPage() {
             <span className="text-[10px] font-mono text-red-700 uppercase tracking-widest">Danger Zone</span>
           </div>
           <p className="text-xs text-red-900 font-mono mb-4">Irreversible actions. Proceed with extreme caution.</p>
-          <Button variant="danger" size="sm" onClick={() => {
-            if (confirm("DELETE ALL saved prompts? This cannot be undone.")) {
-              alert("Implement a dedicated API endpoint to clear all prompts.");
-            }
-          }}>
+          <Button variant="danger" size="sm" loading={clearing} onClick={handleClearPrompts}>
             Clear All Saved Prompts
           </Button>
         </div>

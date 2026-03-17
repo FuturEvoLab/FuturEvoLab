@@ -4,10 +4,12 @@ import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/public/Navbar";
 import PromptGenerator from "@/components/public/PromptGenerator";
 import TemplateCard from "@/components/public/TemplateCard";
+import { useToast } from "@/components/ui/Toast";
 import { Template, Category } from "@/lib/db";
 import { Music, Search } from "lucide-react";
 
 function MusicPageContent() {
+  const { success } = useToast();
   const searchParams = useSearchParams();
   const initialTemplateId = searchParams.get("template");
 
@@ -56,7 +58,7 @@ function MusicPageContent() {
         tags: activeTemplate?.tags || [], sessionId,
       }),
     });
-    alert("Prompt saved!");
+    success("Prompt saved to your collection!");
   };
 
   return (

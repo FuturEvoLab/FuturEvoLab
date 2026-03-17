@@ -1,6 +1,7 @@
 "use client";
 import { SessionProvider } from "next-auth/react";
 import { Session } from "next-auth";
+import { ToastProvider } from "@/components/ui/Toast";
 
 export default function AdminSessionProvider({
   children,
@@ -9,5 +10,9 @@ export default function AdminSessionProvider({
   children: React.ReactNode;
   session: Session | null;
 }) {
-  return <SessionProvider session={session}>{children}</SessionProvider>;
+  return (
+    <SessionProvider session={session}>
+      <ToastProvider>{children}</ToastProvider>
+    </SessionProvider>
+  );
 }
