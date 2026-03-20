@@ -5,6 +5,7 @@ import { timeAgo } from "@/lib/utils";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import { Trash2, Copy, Heart, Search, RefreshCw } from "lucide-react";
+import Breadcrumb from "@/components/admin/Breadcrumb";
 
 export default function PromptsPage() {
   const [prompts, setPrompts] = useState<SavedPrompt[]>([]);
@@ -44,6 +45,7 @@ export default function PromptsPage() {
 
   return (
     <div className="space-y-5 pt-14 lg:pt-0">
+      <Breadcrumb />
       <div className="flex items-center justify-between">
         <div>
           <p className="text-[10px] font-mono text-slate-600 uppercase tracking-widest mb-1">// Data</p>

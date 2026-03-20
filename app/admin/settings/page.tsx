@@ -5,6 +5,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import { useToast } from "@/components/ui/Toast";
+import Breadcrumb from "@/components/admin/Breadcrumb";
 import { Save, CheckCircle, AlertTriangle, Terminal } from "lucide-react";
 
 export default function SettingsPage() {
@@ -53,6 +54,7 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-5 pt-14 lg:pt-0">
+      <Breadcrumb />
       <div className="flex items-center justify-between">
         <div>
           <p className="text-[10px] font-mono text-slate-600 uppercase tracking-widest mb-1">// Configuration</p>

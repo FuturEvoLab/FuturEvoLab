@@ -9,6 +9,7 @@ import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 import Textarea from "@/components/ui/Textarea";
 import { useToast } from "@/components/ui/Toast";
+import Breadcrumb from "@/components/admin/Breadcrumb";
 import {
   Plus, Edit, Trash2, Search, Star, TrendingUp,
   Eye, EyeOff, ExternalLink, Filter
@@ -35,22 +36,32 @@ export default function TemplatesPage() {
   const [form, setForm] = useState(emptyForm);
 
   useEffect(() => {
-    // Check for category filter in URL
     const params = new URLSearchParams(window.location.search);
     const cat = params.get("category");
     if (cat) setFilterCategory(cat);
-    fetchData();
+    const type = params.get("type");
+    if (type) setFilterType(type);
+    // Handle ?edit=ID from AdminFloatingBar
+    const editId = params.get("edit");
+    fetchData().then((allTemplates) => {
+      if (editId && allTemplates) {
+        const found = allTemplates.find((t: Template) => t.id === editId);
+        if (found) openEdit(found);
+      }
+    });
   }, []);
 
-  const fetchData = () => {
-    Promise.all([
+  const fetchData = (): Promise<Template[]> => {
+    return Promise.all([
       fetch("/api/templates?status=active").then(r => r.json()),
       fetch("/api/templates?status=inactive").then(r => r.json()),
       fetch("/api/categories").then(r => r.json()),
     ]).then(([active, inactive, cats]) => {
-      setTemplates([...active, ...inactive]);
+      const all = [...active, ...inactive];
+      setTemplates(all);
       setCategories(cats);
       setLoading(false);
+      return all;
     });
   };
 
@@ -120,6 +131,7 @@ export default function TemplatesPage() {
 
   return (
     <div className="space-y-5 pt-14 lg:pt-0">
+      <Breadcrumb />
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>

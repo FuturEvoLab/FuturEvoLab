@@ -9,6 +9,7 @@ import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 import Textarea from "@/components/ui/Textarea";
 import { useToast } from "@/components/ui/Toast";
+import Breadcrumb from "@/components/admin/Breadcrumb";
 import { Plus, Edit, Trash2, ExternalLink, Layers } from "lucide-react";
 import Link from "next/link";
 
@@ -148,6 +149,7 @@ export default function CategoriesPage() {
 
   return (
     <div className="space-y-5 pt-14 lg:pt-0">
+      <Breadcrumb />
       <div className="flex items-center justify-between">
         <div>
           <p className="text-[10px] font-mono text-slate-600 uppercase tracking-widest mb-1">// Content</p>

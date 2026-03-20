@@ -7,6 +7,7 @@ import Modal from "@/components/ui/Modal";
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 import { useToast } from "@/components/ui/Toast";
+import Breadcrumb from "@/components/admin/Breadcrumb";
 import { Plus, Edit, Trash2, Crown, Shield, User } from "lucide-react";
 
 interface AdminUser {
@@ -80,6 +81,7 @@ export default function UsersPage() {
 
   return (
     <div className="space-y-5 pt-14 lg:pt-0">
+      <Breadcrumb />
       <div className="flex items-center justify-between">
         <div>
           <p className="text-[10px] font-mono text-slate-600 uppercase tracking-widest mb-1">// Access Control</p>

@@ -6,11 +6,12 @@ import { TrendingUp, Star } from "lucide-react";
 interface TemplateCardProps {
   template: Template;
   categoryName?: string;
+  categoryIcon?: string;
   onClick?: () => void;
   active?: boolean;
 }
 
-export default function TemplateCard({ template, categoryName, onClick, active }: TemplateCardProps) {
+export default function TemplateCard({ template, categoryName, categoryIcon, onClick, active }: TemplateCardProps) {
   const isImage = template.type === "image";
 
   return (
@@ -59,7 +60,8 @@ export default function TemplateCard({ template, categoryName, onClick, active }
           ))}
         </div>
         {categoryName && (
-          <span className={`text-[9px] font-mono tracking-wider uppercase ${isImage ? "text-cyan-600" : "text-pink-600"}`}>
+          <span className={`flex items-center gap-1 text-[9px] font-mono tracking-wider uppercase flex-shrink-0 ${isImage ? "text-cyan-700" : "text-pink-700"}`}>
+            {categoryIcon && <span className="text-[11px] leading-none">{categoryIcon}</span>}
             {categoryName}
           </span>
         )}
