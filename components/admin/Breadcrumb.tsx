@@ -9,6 +9,7 @@ const labels: Record<string, string> = {
   templates: "Templates",
   categories: "Categories",
   prompts: "Prompts",
+  collections: "Collections",
   users: "Users",
   settings: "Settings",
   login: "Login",

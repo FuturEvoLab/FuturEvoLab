@@ -21,9 +21,10 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
   const idx = db.savedPrompts.findIndex((p) => p.id === id);
   if (idx === -1) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  if (body.like) {
-    db.savedPrompts[idx].likes += 1;
-  }
+  if (body.like) db.savedPrompts[idx].likes += 1;
+  if (body.starred !== undefined) db.savedPrompts[idx].starred = body.starred;
+  if (body.archived !== undefined) db.savedPrompts[idx].archived = body.archived;
+  if (body.note !== undefined) db.savedPrompts[idx].note = body.note;
   writeDB(db);
   return NextResponse.json(db.savedPrompts[idx]);
 }

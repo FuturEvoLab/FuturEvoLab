@@ -13,10 +13,13 @@ export async function GET(req: NextRequest) {
   // Admin can see all; others only see their session's
   const session = await getServerSession(authOptions);
 
+  const includeArchived = req.nextUrl.searchParams.get("includeArchived") === "true";
+
   let prompts = db.savedPrompts;
   if (!session && sessionId) {
     prompts = prompts.filter((p) => p.sessionId === sessionId);
   }
+  if (!includeArchived) prompts = prompts.filter(p => !p.archived);
   if (type) prompts = prompts.filter((p) => p.type === type);
 
   const sorted = prompts.sort(
@@ -41,6 +44,9 @@ export async function POST(req: NextRequest) {
     type: body.type,
     tags: body.tags || [],
     likes: 0,
+    starred: false,
+    archived: false,
+    note: "",
     createdAt: now(),
     sessionId: body.sessionId || genId(),
   };

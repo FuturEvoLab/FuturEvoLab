@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard, FileText, Layers, FolderOpen,
-  Users, Settings, LogOut, Zap, ExternalLink,
+  Users, Settings, LogOut, Zap, ExternalLink, BookMarked,
 } from "lucide-react";
 
 const navItems = [
@@ -13,8 +13,9 @@ const navItems = [
   { href: "/admin/templates", icon: FileText, label: "Templates", code: "02" },
   { href: "/admin/categories", icon: FolderOpen, label: "Categories", code: "03" },
   { href: "/admin/prompts", icon: Layers, label: "Saved Prompts", code: "04" },
-  { href: "/admin/users", icon: Users, label: "Users", code: "05" },
-  { href: "/admin/settings", icon: Settings, label: "Settings", code: "06" },
+  { href: "/admin/collections", icon: BookMarked, label: "Collections", code: "05" },
+  { href: "/admin/users", icon: Users, label: "Users", code: "06" },
+  { href: "/admin/settings", icon: Settings, label: "Settings", code: "07" },
 ];
 
 export default function AdminSidebar() {

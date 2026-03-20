@@ -57,8 +57,28 @@ export interface SavedPrompt {
   type: PromptType;
   tags: string[];
   likes: number;
+  starred: boolean;
+  archived: boolean;
+  note: string;
   createdAt: string;
   sessionId: string;
+}
+
+export interface PromptCollection {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  color: string;
+  /** manual = explicit list; smart = auto-filtered by query string */
+  type: "manual" | "smart";
+  /** smart query e.g. "type:image", "tag:portrait", "starred" */
+  query: string;
+  /** prompt IDs for manual collections */
+  promptIds: string[];
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface AdminUser {
@@ -86,6 +106,7 @@ export interface Database {
   categories: Category[];
   templates: Template[];
   savedPrompts: SavedPrompt[];
+  collections: PromptCollection[];
   adminUsers: AdminUser[];
   settings: SiteSettings;
 }
@@ -107,7 +128,16 @@ export function readDB(): Database {
     return initial;
   }
   const raw = fs.readFileSync(DB_PATH, "utf-8");
-  return JSON.parse(raw) as Database;
+  const db = JSON.parse(raw) as Database;
+  // Migration: backfill missing fields
+  if (!db.collections) db.collections = getInitialData().collections;
+  db.savedPrompts = db.savedPrompts.map(p => ({
+    ...p,
+    starred: p.starred ?? false,
+    archived: p.archived ?? false,
+    note: p.note ?? "",
+  }));
+  return db;
 }
 
 export function writeDB(db: Database): void {
@@ -694,10 +724,30 @@ function getInitialData(): Database {
     },
   ];
 
+  const collections: PromptCollection[] = [
+    {
+      id: "col-1", name: "Favorites", description: "Starred prompts", icon: "⭐", color: "#f59e0b",
+      type: "smart", query: "starred", promptIds: [], sortOrder: 1, createdAt: now(), updatedAt: now(),
+    },
+    {
+      id: "col-2", name: "Image Prompts", description: "All image generation prompts", icon: "🖼️", color: "#00d4ff",
+      type: "smart", query: "type:image", promptIds: [], sortOrder: 2, createdAt: now(), updatedAt: now(),
+    },
+    {
+      id: "col-3", name: "Music Prompts", description: "All music generation prompts", icon: "🎵", color: "#f472b6",
+      type: "smart", query: "type:music", promptIds: [], sortOrder: 3, createdAt: now(), updatedAt: now(),
+    },
+    {
+      id: "col-4", name: "My Showcase", description: "Hand-picked best prompts", icon: "✨", color: "#a855f7",
+      type: "manual", query: "", promptIds: [], sortOrder: 4, createdAt: now(), updatedAt: now(),
+    },
+  ];
+
   return {
     categories,
     templates,
     savedPrompts: [],
+    collections,
     adminUsers: [
       {
         id: "admin-1",
