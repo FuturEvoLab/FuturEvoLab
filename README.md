@@ -32,6 +32,17 @@ Our loop: build it, watch how it's used, fix it, grow it.
 | **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)** | An unofficial plain-language guide to Claude Code slash commands | 14 categories · "what do you want to do" table · beginner path · safety labels · 7 languages · generated from data |
 | **keigo-tone-check** (coming soon) | An Agent Skill that checks keigo and tone in Japanese business email and chat before sending, based on the relationship with the recipient | Rule checks + model judgement · suggests instead of rewriting · flags over-politeness · regression tests included |
 
+### 📊 Local research dashboards
+
+Repositories are private for now; the demos run in the browser from recorded sample data.
+
+| Project | What it does | Highlights |
+|---|---|---|
+| **Quant Stock God** · [demo](https://futurevolab.github.io/quant-stock-god/?lang=en) | A local monitor for US/HK stocks, indices, rates and commodities: market overview, watchlist alerts, insider buying and 13F changes (SEC EDGAR), CFTC positioning, EIA inventories, rule-based news tagging with an after-the-fact check | Python standard library only · data and keys stay local · EN/JA/ZH · 35 offline tests in CI |
+| **Block Detective** · [demo](https://futurevolab.github.io/block-detective/?lang=en) | A local multi-chain fund-flow investigator: flow graph, risk score propagated over hops, path tracing, whale alerts, smart-money wallet analysis, and a simulated copy-trading ledger for research | Zero dependencies · 10+ APIs with per-API rate limiting and caching · CSRF/XSS/CSP hardening · tests in CI |
+
+> Research and learning tools. Outputs are generated from public data and rules and may be wrong or delayed. **Not investment advice**; the copy-trading feature is simulation only and never places real orders.
+
 ### 🎧 Voice & streaming tools
 
 - **VoiceAutoPlayer** (Windows): a multi-track live player — voice lines, sound effects and music together, auto-ducking, scene switching, global hotkeys, reading character and tone from AI voice file names, loop-point detection and mix recording
@@ -78,6 +89,17 @@ Projects are built from problems met in work and job hunting. Before anything is
 | **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)** | Claude Code のスラッシュコマンドを、やさしい言葉で解説する非公式ガイド | 14カテゴリ・「やりたいこと」から探せる表・初心者向け導線・安全ラベル／7言語／データから自動生成 |
 | **keigo-tone-check**（近日公開） | 日本のビジネスメール・チャットの敬語とトーンを、相手との関係を踏まえて送信前にチェックする Agent Skill | ルール検出＋LLM判断の2段階／指摘のみで書き換えない／過剰敬語も指摘／回帰テスト同梱 |
 
+### 📊 ローカル分析ダッシュボード
+
+リポジトリは現在非公開です。デモは記録済みのサンプルデータでブラウザ上で動きます。
+
+| プロジェクト | 内容 | ポイント |
+|---|---|---|
+| **量化股神 Quant Stock God** · [デモ](https://futurevolab.github.io/quant-stock-god/?lang=ja) | 米国・香港株、指数、金利、商品先物をまとめて見るローカルモニター。市場概況、ウォッチリストのアラート、インサイダー買い・13F の変化（SEC EDGAR）、CFTC ポジション、EIA 在庫、ルールベースのニュース分類と事後検証 | Python 標準ライブラリのみ・データとキーは手元に保存・日英中・オフラインテスト35件を CI で実行 |
+| **区块侦探 Block Detective** · [デモ](https://futurevolab.github.io/block-detective/?lang=ja) | ローカルで動くマルチチェーンの資金フロー調査ツール。資金フローグラフ、ホップをまたいで伝播するリスクスコア、経路追跡、クジラ監視、スマートマネー分析、研究用のコピートレード・シミュレーター | 依存ライブラリなし・10以上の API を個別のレート制限とキャッシュで統合・CSRF/XSS/CSP 対策・CI でテスト |
+
+> 学習・研究用のツールです。表示内容は公開データとルールから自動生成しており、誤りや遅延がありえます。**投資助言ではありません**。コピートレードはシミュレーションのみで、実際の注文は行いません。
+
 ### 🎧 音声・配信ツール
 
 - **VoiceAutoPlayer**（Windows）：ライブ向けマルチトラックプレイヤー。セリフ・効果音・BGM の同時再生、BGM の自動ダッキング、シーン切替、グローバルショートカット、AI 音声ファイル名の読み取り、ループ点の自動検出、ミックス録音
@@ -120,6 +142,15 @@ Projects are built from problems met in work and job hunting. Before anything is
 - **[outfit-twin](https://github.com/FuturEvoLab/outfit-twin)**：根据参考图重建服装，把正面和背面整合成一张 16:9 图片的 Agent Skill。区分可见部分与推测部分，并在 README 写明限制。
 - **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)**：用白话解说 Claude Code 斜杠命令的非官方指南。14 个分类、按“想做的事”查找、新手入门路线、安全标签，7 种语言，由数据自动生成。
 - **keigo-tone-check**（即将公开）：结合与对方的关系，在发送前检查日本商务邮件敬语和语气的 Agent Skill。规则检测＋模型判断两段式；只提建议不改写；也会指出过度敬语；附带回归测试。
+
+### 📊 本地分析看板
+
+仓库目前为私有；演示版用录制的样本数据在浏览器中运行。
+
+- **量化股神 Quant Stock God** · [演示](https://futurevolab.github.io/quant-stock-god/?lang=zh)：在本地一屏查看美股、港股、指数、利率和大宗商品。市场概况、自选股提醒、内部人买入与 13F 变化（SEC EDGAR）、CFTC 持仓、EIA 库存、基于规则的新闻分类与事后检验。仅用 Python 标准库，数据和密钥留在本机，中日英三语，35 个离线测试在 CI 运行。
+- **区块侦探 Block Detective** · [演示](https://futurevolab.github.io/block-detective/?lang=zh)：本地运行的多链资金流调查工具。资金流向图、跨多跳传播的风险评分、路径追踪、巨鲸监控、聪明钱钱包分析、研究用的跟单模拟器。零依赖，整合 10 多个 API 并分别做限流与缓存，有 CSRF/XSS/CSP 防护，CI 自动测试。
+
+> 学习与研究用工具。结果由公开数据和规则自动生成，可能有误或延迟。**不构成投资建议**；跟单功能仅为模拟，不会真实下单。
 
 ### 🎧 配音・直播工具
 
