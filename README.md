@@ -6,15 +6,61 @@
 
 **Heal the Mind. Evolve the Future.**
 
-現場の課題を、使える AI ツールに · Turning real-world problems into AI tools you can use · 把现场的问题，做成能用的 AI 工具
+Turning real-world problems into AI tools you can use · 現場の課題を、使える AI ツールに · 把现场的问题，做成能用的 AI 工具
 
 [![Website](https://img.shields.io/badge/futurevolab.com-0B0B0F?style=flat&logo=googlechrome&logoColor=white)](https://futurevolab.com)
 [![Weavely](https://img.shields.io/badge/織音_Weavely-Coming_soon-5B8DEF?style=flat)](https://weavely.futurevolab.com)
 ![Location](https://img.shields.io/badge/Tokyo-555?style=flat)
 
-[日本語](#日本語) · [English](#english) · [中文](#中文)
+[English](#english) · [日本語](#日本語) · [中文](#中文)
 
 </div>
+
+---
+
+## English
+
+👋 **FuturEvoLab** is an independent studio in Tokyo.
+Starting from real problems met on the job, we build **Agent Skills and AI tools for everyday work**, and **tools for voice acting, live streaming and audio creators**.
+Our loop: build it, watch how it's used, fix it, grow it.
+
+### 🧩 Agent Skills & AI tools
+
+| Project | What it does | Highlights |
+|---|---|---|
+| **[outfit-twin](https://github.com/FuturEvoLab/outfit-twin)** | An Agent Skill that reconstructs an outfit from reference images into one 16:9 image with front and back views | Separates what is visible from what is inferred · limits stated in the README · EN/JA/ZH |
+| **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)** | An unofficial plain-language guide to Claude Code slash commands | 14 categories · "what do you want to do" table · beginner path · safety labels · 7 languages · generated from data |
+| **keigo-tone-check** (coming soon) | An Agent Skill that checks keigo and tone in Japanese business email and chat before sending, based on the relationship with the recipient | Rule checks + model judgement · suggests instead of rewriting · flags over-politeness · regression tests included |
+
+### 🎧 Voice & streaming tools
+
+- **VoiceAutoPlayer** (Windows): a multi-track live player — voice lines, sound effects and music together, auto-ducking, scene switching, global hotkeys, reading character and tone from AI voice file names, loop-point detection and mix recording
+- **FuturEvo Weavely** (web): the same live player in the browser plus a multi-track timeline that exports WAV. Files never leave your computer 👉 [weavely.futurevolab.com](https://weavely.futurevolab.com) (coming soon)
+
+### 🔬 Exploring
+
+- AI speech with original designed voices: [Qwen3-TTS](https://github.com/FuturEvoLab/Qwen3-TTS-fork) · [VoxCPM](https://github.com/FuturEvoLab/VoxCPM-fork) · [IndexTTS](https://github.com/FuturEvoLab/index-tts-fork) · [GPT-SoVITS](https://github.com/FuturEvoLab/GPT-SoVITS-fork)
+- Karaoke subtitles timed word by word: [whisperX](https://github.com/FuturEvoLab/whisperX-fork)
+- AI companions and virtual streamers: [AIRI](https://github.com/FuturEvoLab/airi-fork)
+
+### 💡 Principles
+
+- **AI suggests, people decide** — decisions that need judgement stay with people
+- **Limits are written down** — every README says what the tool cannot do; no overstated claims
+- **Local first** — voices, assets and personal data are processed on your own machine where possible
+- **Licenses respected** — commercially usable models first, and every model's license honored
+
+### 📜 Disclosure policy
+
+Projects are built from problems met in work and job hunting. Before anything is published:
+
+1. **Problems are generalised first** — nothing that identifies a specific company or engagement
+2. **No confidential material** — no customer data, internal documents, contract terms, original hiring assignments, or anything under NDA
+3. **Fictional examples only** — no real companies, people or deal details
+4. **When in doubt, keep it private** — uncertain items stay in private repositories for testing
+5. **External transmission is stated** — tools that may handle personal data say so in their README
+
+🌐 [futurevolab.com](https://futurevolab.com)
 
 ---
 
@@ -64,33 +110,6 @@
 
 ---
 
-## English
-
-👋 **FuturEvoLab** is an independent studio in Tokyo.
-We build **Agent Skills and AI tools for everyday work**, and **tools for voice acting, live streaming and audio creators**, starting from real problems met on the job. Build, watch how it's used, fix, grow.
-
-### 🧩 Agent Skills & AI tools
-
-- **[outfit-twin](https://github.com/FuturEvoLab/outfit-twin)** — An Agent Skill that reconstructs an outfit from reference images into one 16:9 image with front and back views. Separates what is visible from what is inferred; limits stated in the README.
-- **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)** — An unofficial plain-language guide to Claude Code slash commands: 14 categories, a "what do you want to do" table, a beginner path and safety labels, in 7 languages, generated from data.
-- **keigo-tone-check** (coming soon) — An Agent Skill that checks keigo and tone in Japanese business email before sending, based on the relationship with the recipient. Rule checks plus model judgement; suggests instead of rewriting; flags over-politeness; ships with regression tests.
-
-### 🎧 Voice & streaming tools
-
-- **VoiceAutoPlayer** (Windows): multi-track live player with auto-ducking, scenes, global hotkeys, loop detection and mix recording.
-- **FuturEvo Weavely** (web): the same live player plus a multi-track timeline that exports WAV. Files never leave your computer. 👉 [weavely.futurevolab.com](https://weavely.futurevolab.com) (coming soon)
-
-### 🔬 Exploring
-
-AI speech with original designed voices ([Qwen3-TTS](https://github.com/FuturEvoLab/Qwen3-TTS-fork) · [VoxCPM](https://github.com/FuturEvoLab/VoxCPM-fork) · [IndexTTS](https://github.com/FuturEvoLab/index-tts-fork) · [GPT-SoVITS](https://github.com/FuturEvoLab/GPT-SoVITS-fork)) · word-timed karaoke subtitles ([whisperX](https://github.com/FuturEvoLab/whisperX-fork)) · AI companions and virtual streamers ([AIRI](https://github.com/FuturEvoLab/airi-fork))
-
-### 💡 Principles & disclosure
-
-**AI suggests, people decide · Limits are written down · Local first · Every model's license respected.**
-Problems taken from work are generalised before use; no customer data, internal documents, contract terms, original hiring assignments or anything under NDA is published; examples and test data are fictional; when in doubt, it stays private.
-
----
-
 ## 中文
 
 👋 **FuturEvoLab** 是位于东京的个人工作室。
@@ -118,7 +137,7 @@ Problems taken from work are generalised before use; no customer data, internal 
 
 ---
 
-### 🛠 技術スタック · Tech Stack · 技术栈
+### 🛠 Tech Stack · 技術スタック · 技术栈
 
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
