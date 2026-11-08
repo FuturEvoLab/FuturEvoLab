@@ -9,6 +9,7 @@
 Turning real-world problems into AI tools you can use · 現場の課題を、使える AI ツールに · 把现场的问题，做成能用的 AI 工具
 
 [![Website](https://img.shields.io/badge/futurevolab.com-0B0B0F?style=flat&logo=googlechrome&logoColor=white)](https://futurevolab.com)
+[![X](https://img.shields.io/badge/@FuturEvoLab-000000?style=flat&logo=x&logoColor=white)](https://x.com/FuturEvoLab)
 [![Weavely](https://img.shields.io/badge/織音_Weavely-Coming_soon-5B8DEF?style=flat)](https://weavely.futurevolab.com)
 ![Location](https://img.shields.io/badge/Tokyo-555?style=flat)
 
@@ -23,6 +24,8 @@ Turning real-world problems into AI tools you can use · 現場の課題を、�
 👋 **FuturEvoLab** is an independent studio in Tokyo.
 Starting from real problems met on the job, we build **Agent Skills and AI tools for everyday work**, and **tools for voice acting, live streaming and audio creators**.
 Our loop: build it, watch how it's used, fix it, grow it.
+
+**About the name:** **Futur** means *future*, **Evo** means *evolution* — a lab for evolving the future, one small, useful tool at a time.
 
 ### 🧩 Agent Skills & AI tools
 
@@ -71,7 +74,9 @@ Projects are built from problems met in work and job hunting. Before anything is
 4. **When in doubt, keep it private** — uncertain items stay in private repositories for testing
 5. **External transmission is stated** — tools that may handle personal data say so in their README
 
-🌐 [futurevolab.com](https://futurevolab.com)
+### 📮 Contact
+
+Questions, feedback and work enquiries: DM on X 👉 [@FuturEvoLab](https://x.com/FuturEvoLab) · 🌐 [futurevolab.com](https://futurevolab.com)
 
 ---
 
@@ -80,6 +85,8 @@ Projects are built from problems met in work and job hunting. Before anything is
 👋 **FuturEvoLab** は東京の個人スタジオです。
 実務の中で出会った課題を題材に、**Agent Skill・業務向け AI ツール**と、**声・配信・音声制作のためのツール**を作っています。
 「作って、使われ方を見て、直して、育てる」を続けています。
+
+**名前の由来：** **Futur** は「未来」、**Evo** は「進化」。小さくても役に立つツールを積み重ねて、未来を進化させるラボです。
 
 ### 🧩 Agent Skills・AI ツール
 
@@ -128,7 +135,9 @@ Projects are built from problems met in work and job hunting. Before anything is
 4. **迷うものは公開しない**：判断に迷うものは非公開リポジトリでの検証にとどめる
 5. **外部送信の有無を明記する**：個人情報を扱いうるツールは README に記載する
 
-🌐 [futurevolab.com](https://futurevolab.com)
+### 📮 お問い合わせ
+
+ご質問・ご感想・お仕事のご相談は X の DM へ 👉 [@FuturEvoLab](https://x.com/FuturEvoLab) · 🌐 [futurevolab.com](https://futurevolab.com)
 
 ---
 
@@ -136,6 +145,8 @@ Projects are built from problems met in work and job hunting. Before anything is
 
 👋 **FuturEvoLab** 是位于东京的个人工作室。
 以实务中遇到的问题为题材，制作 **Agent Skill 与工作用 AI 工具**，以及**面向配音、直播和声音创作的工具**。坚持“做出来、看怎么被使用、改进、培养”。
+
+**名字由来：** **Futur** 是“未来”，**Evo** 是“进化”。用一个个小而实用的工具，让未来进化。
 
 ### 🧩 Agent Skills・AI 工具
 
@@ -165,6 +176,10 @@ Projects are built from problems met in work and job hunting. Before anything is
 
 **AI 提建议，人来决定 · 写明做不到的事 · 本地优先 · 尊重每个模型的许可。**
 来自工作的问题会先一般化再作为题材；不公开客户数据、内部资料、合同条件、招聘课题原文及任何保密协议范围内的内容；示例和测试数据均为虚构；拿不准的内容只在私有仓库中验证。
+
+### 📮 联系方式
+
+问题、反馈和合作咨询，欢迎在 X 私信 👉 [@FuturEvoLab](https://x.com/FuturEvoLab) · 🌐 [futurevolab.com](https://futurevolab.com)
 
 ---
 
