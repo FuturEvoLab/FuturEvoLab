@@ -9,6 +9,7 @@
 Turning real-world problems into AI tools you can use · 現場の課題を、使える AI ツールに · 把现场的问题，做成能用的 AI 工具
 
 [![Website](https://img.shields.io/badge/futurevolab.com-0B0B0F?style=flat&logo=googlechrome&logoColor=white)](https://futurevolab.com)
+[![X](https://img.shields.io/badge/@FuturEvoLab-000000?style=flat&logo=x&logoColor=white)](https://x.com/FuturEvoLab)
 [![Weavely](https://img.shields.io/badge/織音_Weavely-Coming_soon-5B8DEF?style=flat)](https://weavely.futurevolab.com)
 ![Location](https://img.shields.io/badge/Tokyo-555?style=flat)
 
@@ -29,17 +30,17 @@ Our loop: build it, watch how it's used, fix it, grow it.
 | Project | What it does | Highlights |
 |---|---|---|
 | **[outfit-twin](https://github.com/FuturEvoLab/outfit-twin)** | An Agent Skill that reconstructs an outfit from reference images into one 16:9 image with front and back views | Separates what is visible from what is inferred · limits stated in the README · EN/JA/ZH |
-| **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)** | An unofficial plain-language guide to Claude Code slash commands | 14 categories · "what do you want to do" table · beginner path · safety labels · 7 languages · generated from data |
+| **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)** · [web version](https://futurevolab.github.io/claude-code-commands-i18n/) | An unofficial plain-language guide to Claude Code slash commands | 14 categories · "what do you want to do" table · beginner path · safety labels · 7 languages · generated from data |
 | **keigo-tone-check** (coming soon) | An Agent Skill that checks keigo and tone in Japanese business email and chat before sending, based on the relationship with the recipient | Rule checks + model judgement · suggests instead of rewriting · flags over-politeness · regression tests included |
 
 ### 📊 Local research dashboards
 
-Repositories are private for now; the demos run in the browser from recorded sample data.
+The demos run in the browser from recorded sample data.
 
 | Project | What it does | Highlights |
 |---|---|---|
-| **Quant Stock God** · [demo](https://futurevolab.github.io/quant-stock-god/?lang=en) | A local monitor for US/HK stocks, indices, rates and commodities: market overview, watchlist alerts, insider buying and 13F changes (SEC EDGAR), CFTC positioning, EIA inventories, rule-based news tagging with an after-the-fact check | Python standard library only · data and keys stay local · EN/JA/ZH · 35 offline tests in CI |
-| **Block Detective** · [demo](https://futurevolab.github.io/block-detective/?lang=en) | A local multi-chain fund-flow investigator: flow graph, risk score propagated over hops, path tracing, whale alerts, smart-money wallet analysis, and a simulated copy-trading ledger for research | Zero dependencies · 10+ APIs with per-API rate limiting and caching · CSRF/XSS/CSP hardening · tests in CI |
+| **[Quant Stock God](https://github.com/FuturEvoLab/quant-stock-god)** · [demo](https://futurevolab.github.io/quant-stock-god/?lang=en) | A local monitor for US/HK stocks, indices, rates and commodities: market overview, watchlist alerts, insider buying and 13F changes (SEC EDGAR), CFTC positioning, EIA inventories, rule-based news tagging with an after-the-fact check | Python standard library only · data and keys stay local · EN/JA/ZH · 35 offline tests in CI |
+| **[Block Detective](https://github.com/FuturEvoLab/block-detective)** · [demo](https://futurevolab.github.io/block-detective/?lang=en) | A local multi-chain fund-flow investigator: flow graph, risk score propagated over hops, path tracing, whale alerts, smart-money wallet analysis, and a simulated copy-trading ledger for research | Zero dependencies · 10+ APIs with per-API rate limiting and caching · CSRF/XSS/CSP hardening · tests in CI |
 
 > Research and learning tools. Outputs are generated from public data and rules and may be wrong or delayed. **Not investment advice**; the copy-trading feature is simulation only and never places real orders.
 
@@ -87,17 +88,17 @@ Projects are built from problems met in work and job hunting. Before anything is
 | プロジェクト | 内容 | ポイント |
 |---|---|---|
 | **[outfit-twin](https://github.com/FuturEvoLab/outfit-twin)** | 参考画像から衣装を再構成し、正面・背面を1枚の16:9画像にまとめる Agent Skill | 見えている部分と推定で補う部分を区別／できないことを README に明記／日・英・中 |
-| **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)** | Claude Code のスラッシュコマンドを、やさしい言葉で解説する非公式ガイド | 14カテゴリ・「やりたいこと」から探せる表・初心者向け導線・安全ラベル／7言語／データから自動生成 |
+| **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)** · [Web版](https://futurevolab.github.io/claude-code-commands-i18n/) | Claude Code のスラッシュコマンドを、やさしい言葉で解説する非公式ガイド | 14カテゴリ・「やりたいこと」から探せる表・初心者向け導線・安全ラベル／7言語／データから自動生成 |
 | **keigo-tone-check**（近日公開） | 日本のビジネスメール・チャットの敬語とトーンを、相手との関係を踏まえて送信前にチェックする Agent Skill | ルール検出＋LLM判断の2段階／指摘のみで書き換えない／過剰敬語も指摘／回帰テスト同梱 |
 
 ### 📊 ローカル分析ダッシュボード
 
-リポジトリは現在非公開です。デモは記録済みのサンプルデータでブラウザ上で動きます。
+デモは記録済みのサンプルデータでブラウザ上で動きます。
 
 | プロジェクト | 内容 | ポイント |
 |---|---|---|
-| **量化股神 Quant Stock God** · [デモ](https://futurevolab.github.io/quant-stock-god/?lang=ja) | 米国・香港株、指数、金利、商品先物をまとめて見るローカルモニター。市場概況、ウォッチリストのアラート、インサイダー買い・13F の変化（SEC EDGAR）、CFTC ポジション、EIA 在庫、ルールベースのニュース分類と事後検証 | Python 標準ライブラリのみ・データとキーは手元に保存・日英中・オフラインテスト35件を CI で実行 |
-| **区块侦探 Block Detective** · [デモ](https://futurevolab.github.io/block-detective/?lang=ja) | ローカルで動くマルチチェーンの資金フロー調査ツール。資金フローグラフ、ホップをまたいで伝播するリスクスコア、経路追跡、クジラ監視、スマートマネー分析、研究用のコピートレード・シミュレーター | 依存ライブラリなし・10以上の API を個別のレート制限とキャッシュで統合・CSRF/XSS/CSP 対策・CI でテスト |
+| **[量化股神 Quant Stock God](https://github.com/FuturEvoLab/quant-stock-god)** · [デモ](https://futurevolab.github.io/quant-stock-god/?lang=ja) | 米国・香港株、指数、金利、商品先物をまとめて見るローカルモニター。市場概況、ウォッチリストのアラート、インサイダー買い・13F の変化（SEC EDGAR）、CFTC ポジション、EIA 在庫、ルールベースのニュース分類と事後検証 | Python 標準ライブラリのみ・データとキーは手元に保存・日英中・オフラインテスト35件を CI で実行 |
+| **[区块侦探 Block Detective](https://github.com/FuturEvoLab/block-detective)** · [デモ](https://futurevolab.github.io/block-detective/?lang=ja) | ローカルで動くマルチチェーンの資金フロー調査ツール。資金フローグラフ、ホップをまたいで伝播するリスクスコア、経路追跡、クジラ監視、スマートマネー分析、研究用のコピートレード・シミュレーター | 依存ライブラリなし・10以上の API を個別のレート制限とキャッシュで統合・CSRF/XSS/CSP 対策・CI でテスト |
 
 > 学習・研究用のツールです。表示内容は公開データとルールから自動生成しており、誤りや遅延がありえます。**投資助言ではありません**。コピートレードはシミュレーションのみで、実際の注文は行いません。
 
@@ -145,17 +146,17 @@ Projects are built from problems met in work and job hunting. Before anything is
 | 项目 | 内容 | 亮点 |
 |---|---|---|
 | **[outfit-twin](https://github.com/FuturEvoLab/outfit-twin)** | 根据参考图重建服装，把正面与背面整合成一张 16:9 图片的 Agent Skill | 区分可见部分与推测部分 · README 写明限制 · 中日英 |
-| **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)** | 用白话解说 Claude Code 斜杠命令的非官方指南 | 14 个分类 · 按“想做的事”查找的表格 · 新手入门路线 · 安全标签 · 7 种语言 · 由数据自动生成 |
+| **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)** · [网页版](https://futurevolab.github.io/claude-code-commands-i18n/) | 用白话解说 Claude Code 斜杠命令的非官方指南 | 14 个分类 · 按“想做的事”查找的表格 · 新手入门路线 · 安全标签 · 7 种语言 · 由数据自动生成 |
 | **keigo-tone-check**（即将公开） | 结合与对方的关系，在发送前检查日本商务邮件和聊天中敬语与语气的 Agent Skill | 规则检测＋模型判断两段式 · 只提建议不改写 · 也会指出过度敬语 · 附带回归测试 |
 
 ### 📊 本地分析看板
 
-仓库目前为私有；演示版用录制的样本数据在浏览器中运行。
+演示版用录制的样本数据在浏览器中运行。
 
 | 项目 | 内容 | 亮点 |
 |---|---|---|
-| **量化股神 Quant Stock God** · [演示](https://futurevolab.github.io/quant-stock-god/?lang=zh) | 在本地一屏查看美股、港股、指数、利率和大宗商品。市场概况、自选股提醒、内部人买入与 13F 变化（SEC EDGAR）、CFTC 持仓、EIA 库存、基于规则的新闻分类与事后检验 | 仅用 Python 标准库 · 数据和密钥留在本机 · 中日英 · 35 个离线测试在 CI 运行 |
-| **区块侦探 Block Detective** · [演示](https://futurevolab.github.io/block-detective/?lang=zh) | 本地运行的多链资金流调查工具。资金流向图、跨多跳传播的风险评分、路径追踪、巨鲸监控、聪明钱钱包分析、研究用的跟单模拟器 | 零依赖 · 整合 10 多个 API 并分别限流与缓存 · CSRF/XSS/CSP 防护 · CI 自动测试 |
+| **[量化股神 Quant Stock God](https://github.com/FuturEvoLab/quant-stock-god)** · [演示](https://futurevolab.github.io/quant-stock-god/?lang=zh) | 在本地一屏查看美股、港股、指数、利率和大宗商品。市场概况、自选股提醒、内部人买入与 13F 变化（SEC EDGAR）、CFTC 持仓、EIA 库存、基于规则的新闻分类与事后检验 | 仅用 Python 标准库 · 数据和密钥留在本机 · 中日英 · 35 个离线测试在 CI 运行 |
+| **[区块侦探 Block Detective](https://github.com/FuturEvoLab/block-detective)** · [演示](https://futurevolab.github.io/block-detective/?lang=zh) | 本地运行的多链资金流调查工具。资金流向图、跨多跳传播的风险评分、路径追踪、巨鲸监控、聪明钱钱包分析、研究用的跟单模拟器 | 零依赖 · 整合 10 多个 API 并分别限流与缓存 · CSRF/XSS/CSP 防护 · CI 自动测试 |
 
 > 学习与研究用工具。结果由公开数据和规则自动生成，可能有误或延迟。**不构成投资建议**；跟单功能仅为模拟，不会真实下单。
 
@@ -202,6 +203,7 @@ Projects are built from problems met in work and job hunting. Before anything is
 ![WPF](https://img.shields.io/badge/WPF-0C54C2)
 ![NAudio](https://img.shields.io/badge/NAudio-555)
 ![Web Audio](https://img.shields.io/badge/Web%20Audio%20API-FF6F00)
-![Astro](https://img.shields.io/badge/Astro-BC52EE?logo=astro&logoColor=white)
+![Three.js](https://img.shields.io/badge/Three.js-000000?logo=threedotjs&logoColor=white)
+![Cloudflare Pages](https://img.shields.io/badge/Cloudflare%20Pages-F38020?logo=cloudflarepages&logoColor=white)
 ![Claude Code](https://img.shields.io/badge/Claude%20Code-D97757?logo=anthropic&logoColor=white)
 ![Agent Skills](https://img.shields.io/badge/Agent%20Skills-SKILL.md-444)
