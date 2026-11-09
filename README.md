@@ -75,7 +75,8 @@ Projects are built from problems met in work and job hunting. Before anything is
 
 ---
 
-## 日本語
+<details>
+<summary><h2>日本語</h2></summary>
 
 👋 **FuturEvoLab** は東京の個人スタジオです。
 実務の中で出会った課題を題材に、**Agent Skill・業務向け AI ツール**と、**声・配信・音声制作のためのツール**を作っています。
@@ -130,41 +131,65 @@ Projects are built from problems met in work and job hunting. Before anything is
 
 🌐 [futurevolab.com](https://futurevolab.com)
 
----
+</details>
 
-## 中文
+<details>
+<summary><h2>中文</h2></summary>
 
 👋 **FuturEvoLab** 是位于东京的个人工作室。
-以实务中遇到的问题为题材，制作 **Agent Skill 与工作用 AI 工具**，以及**面向配音、直播和声音创作的工具**。坚持“做出来、看怎么被使用、改进、培养”。
+以实务中遇到的问题为题材，制作 **Agent Skill 与工作用 AI 工具**，以及**面向配音、直播和声音创作的工具**。
+坚持“做出来、看怎么被使用、改进、培养”。
 
 ### 🧩 Agent Skills・AI 工具
 
-- **[outfit-twin](https://github.com/FuturEvoLab/outfit-twin)**：根据参考图重建服装，把正面和背面整合成一张 16:9 图片的 Agent Skill。区分可见部分与推测部分，并在 README 写明限制。
-- **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)**：用白话解说 Claude Code 斜杠命令的非官方指南。14 个分类、按“想做的事”查找、新手入门路线、安全标签，7 种语言，由数据自动生成。
-- **keigo-tone-check**（即将公开）：结合与对方的关系，在发送前检查日本商务邮件敬语和语气的 Agent Skill。规则检测＋模型判断两段式；只提建议不改写；也会指出过度敬语；附带回归测试。
+| 项目 | 内容 | 亮点 |
+|---|---|---|
+| **[outfit-twin](https://github.com/FuturEvoLab/outfit-twin)** | 根据参考图重建服装，把正面与背面整合成一张 16:9 图片的 Agent Skill | 区分可见部分与推测部分 · README 写明限制 · 中日英 |
+| **[claude-code-commands-i18n](https://github.com/FuturEvoLab/claude-code-commands-i18n)** | 用白话解说 Claude Code 斜杠命令的非官方指南 | 14 个分类 · 按“想做的事”查找的表格 · 新手入门路线 · 安全标签 · 7 种语言 · 由数据自动生成 |
+| **keigo-tone-check**（即将公开） | 结合与对方的关系，在发送前检查日本商务邮件和聊天中敬语与语气的 Agent Skill | 规则检测＋模型判断两段式 · 只提建议不改写 · 也会指出过度敬语 · 附带回归测试 |
 
 ### 📊 本地分析看板
 
 仓库目前为私有；演示版用录制的样本数据在浏览器中运行。
 
-- **量化股神 Quant Stock God** · [演示](https://futurevolab.github.io/quant-stock-god/?lang=zh)：在本地一屏查看美股、港股、指数、利率和大宗商品。市场概况、自选股提醒、内部人买入与 13F 变化（SEC EDGAR）、CFTC 持仓、EIA 库存、基于规则的新闻分类与事后检验。仅用 Python 标准库，数据和密钥留在本机，中日英三语，35 个离线测试在 CI 运行。
-- **区块侦探 Block Detective** · [演示](https://futurevolab.github.io/block-detective/?lang=zh)：本地运行的多链资金流调查工具。资金流向图、跨多跳传播的风险评分、路径追踪、巨鲸监控、聪明钱钱包分析、研究用的跟单模拟器。零依赖，整合 10 多个 API 并分别做限流与缓存，有 CSRF/XSS/CSP 防护，CI 自动测试。
+| 项目 | 内容 | 亮点 |
+|---|---|---|
+| **量化股神 Quant Stock God** · [演示](https://futurevolab.github.io/quant-stock-god/?lang=zh) | 在本地一屏查看美股、港股、指数、利率和大宗商品。市场概况、自选股提醒、内部人买入与 13F 变化（SEC EDGAR）、CFTC 持仓、EIA 库存、基于规则的新闻分类与事后检验 | 仅用 Python 标准库 · 数据和密钥留在本机 · 中日英 · 35 个离线测试在 CI 运行 |
+| **区块侦探 Block Detective** · [演示](https://futurevolab.github.io/block-detective/?lang=zh) | 本地运行的多链资金流调查工具。资金流向图、跨多跳传播的风险评分、路径追踪、巨鲸监控、聪明钱钱包分析、研究用的跟单模拟器 | 零依赖 · 整合 10 多个 API 并分别限流与缓存 · CSRF/XSS/CSP 防护 · CI 自动测试 |
 
 > 学习与研究用工具。结果由公开数据和规则自动生成，可能有误或延迟。**不构成投资建议**；跟单功能仅为模拟，不会真实下单。
 
 ### 🎧 配音・直播工具
 
-- **配音自动播放器 VoiceAutoPlayer**（Windows）：多轨现场播放器，自动压低背景音乐、场景切换、全局快捷键、自动找循环点、混音录制。
-- **织音 FuturEvo Weavely**（网页）：浏览器里的现场播放器和多轨时间线，可导出 WAV，文件不上传 👉 [weavely.futurevolab.com](https://weavely.futurevolab.com)（即将上线）
+- **配音自动播放器 VoiceAutoPlayer**（Windows）：面向直播的多轨播放器。台词、音效、BGM 同时播放，BGM 自动压低，场景切换，全局快捷键，从 AI 语音文件名读取角色与语气，自动检测循环点，混音录制
+- **织音 FuturEvo Weavely**（网页）：在浏览器中运行的同一套现场播放器，加上可导出 WAV 的多轨时间线。文件不会离开你的电脑 👉 [weavely.futurevolab.com](https://weavely.futurevolab.com)（即将上线）
 
 ### 🔬 正在研究
 
-原创角色声音的 AI 语音合成（[Qwen3-TTS](https://github.com/FuturEvoLab/Qwen3-TTS-fork) · [VoxCPM](https://github.com/FuturEvoLab/VoxCPM-fork) · [IndexTTS](https://github.com/FuturEvoLab/index-tts-fork) · [GPT-SoVITS](https://github.com/FuturEvoLab/GPT-SoVITS-fork)）· 逐字卡拉 OK 字幕（[whisperX](https://github.com/FuturEvoLab/whisperX-fork)）· AI 伴侣与虚拟主播（[AIRI](https://github.com/FuturEvoLab/airi-fork)）
+- 原创角色声音的 AI 语音合成：[Qwen3-TTS](https://github.com/FuturEvoLab/Qwen3-TTS-fork) · [VoxCPM](https://github.com/FuturEvoLab/VoxCPM-fork) · [IndexTTS](https://github.com/FuturEvoLab/index-tts-fork) · [GPT-SoVITS](https://github.com/FuturEvoLab/GPT-SoVITS-fork)
+- 逐字对齐时间轴的卡拉 OK 字幕：[whisperX](https://github.com/FuturEvoLab/whisperX-fork)
+- AI 伴侣与虚拟主播：[AIRI](https://github.com/FuturEvoLab/airi-fork)
 
-### 💡 原则与公开方针
+### 💡 原则
 
-**AI 提建议，人来决定 · 写明做不到的事 · 本地优先 · 尊重每个模型的许可。**
-来自工作的问题会先一般化再作为题材；不公开客户数据、内部资料、合同条件、招聘课题原文及任何保密协议范围内的内容；示例和测试数据均为虚构；拿不准的内容只在私有仓库中验证。
+- **AI 提建议，人来决定**：需要判断的地方留给人
+- **写明做不到的事**：每个 README 都写清工具的限制，不夸大性能
+- **本地优先**：声音、素材和个人信息尽量在自己的电脑上处理
+- **尊重许可**：优先选择可商用的模型，并遵守每个模型的许可条款
+
+### 📜 公开方针
+
+项目题材来自工作和求职中遇到的问题。公开前遵守以下规则：
+
+1. **问题先一般化**：抽象到无法识别具体公司或项目
+2. **不含保密内容**：不公开客户数据、内部资料、合同条件、招聘课题原文及任何保密协议范围内的内容
+3. **示例和测试数据均为虚构**：不使用真实的公司、人名或交易细节
+4. **拿不准的不公开**：有疑问的内容只在私有仓库中验证
+5. **写明是否向外部发送数据**：可能处理个人信息的工具会在 README 中说明
+
+🌐 [futurevolab.com](https://futurevolab.com)
+
+</details>
 
 ---
 
