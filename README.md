@@ -15,6 +15,10 @@ Turning real-world problems into AI tools you can use · 現場の課題を、�
 
 [English](#english) · [日本語](#日本語) · [中文](#中文)
 
+<a href="https://futurevolab.github.io/quant-stock-god/?lang=en"><img src="https://futurevolab.com/img/quant-market.jpg" width="32%" alt="Quant Stock God — market overview"></a>
+<a href="https://futurevolab.github.io/block-detective/?lang=en"><img src="https://futurevolab.com/img/block-flow.jpg" width="32%" alt="Block Detective — fund-flow graph"></a>
+<a href="https://futurevolab.github.io/claude-code-commands-i18n/"><img src="https://futurevolab.com/img/cc-matrix.jpg" width="32%" alt="Claude Code Commands i18n — web version"></a>
+
 </div>
 
 ---
@@ -24,6 +28,8 @@ Turning real-world problems into AI tools you can use · 現場の課題を、�
 👋 **FuturEvoLab** is an independent studio in Tokyo.
 Starting from real problems met on the job, we build **Agent Skills and AI tools for everyday work**, and **tools for voice acting, live streaming and audio creators**.
 Our loop: build it, watch how it's used, fix it, grow it.
+
+**About the name:** **Futur** means *future*, **Evo** means *evolution* — a lab for evolving the future, one small, useful tool at a time.
 
 ### 🧩 Agent Skills & AI tools
 
@@ -83,6 +89,8 @@ Projects are built from problems met in work and job hunting. Before anything is
 実務の中で出会った課題を題材に、**Agent Skill・業務向け AI ツール**と、**声・配信・音声制作のためのツール**を作っています。
 「作って、使われ方を見て、直して、育てる」を続けています。
 
+**名前の由来**：**Futur** は未来、**Evo** は進化。小さくても役に立つツールを一つずつ作りながら、未来を進化させていくラボです。
+
 ### 🧩 Agent Skills・AI ツール
 
 | プロジェクト | 内容 | ポイント |
@@ -140,6 +148,8 @@ Projects are built from problems met in work and job hunting. Before anything is
 👋 **FuturEvoLab** 是位于东京的个人工作室。
 以实务中遇到的问题为题材，制作 **Agent Skill 与工作用 AI 工具**，以及**面向配音、直播和声音创作的工具**。
 坚持“做出来、看怎么被使用、改进、培养”。
+
+**名字的由来**：**Futur** 是未来，**Evo** 是进化。一个一个做出小而有用的工具，让未来不断进化的实验室。
 
 ### 🧩 Agent Skills・AI 工具
 
